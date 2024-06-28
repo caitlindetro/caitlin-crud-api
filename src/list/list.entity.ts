@@ -17,7 +17,7 @@ export class List {
   @Column()
   description: string;
 
-  @Column()
+  @Column({ default: false })
   isCompleted: boolean;
 
   @ManyToOne(() => User, (user) => user.lists)

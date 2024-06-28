@@ -16,7 +16,7 @@ export class Task {
   @Column()
   description: string;
 
-  @Column()
+  @Column({ default: false })
   isCompleted: boolean;
 
   @ManyToOne(() => List, (list) => list.tasks)
