@@ -25,6 +25,11 @@ export class ListsService {
     return await this.listsRepository.findOneBy({ id });
   }
 
+  // Used to filter lists by associated user ID
+  public async getListsByUser(id: number): Promise<List[]> {
+    return await this.listsRepository.findBy({ user: { id } });
+  }
+
   /**
    * Used to create new list. If database error occurs,
    * this will return null indicating that the list 

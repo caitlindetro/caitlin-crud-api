@@ -39,6 +39,11 @@ export class ListsController {
     return list;
   }
 
+  @Get('filter/:userId')
+  async getListsByUser(@Param('userId') userId: number): Promise<List[] | string> {
+    return await this.listsService.getListsByUser(userId);
+  }
+
   @Post()
   async createList(
     // Validation pipe will validate the request according to the rules in the DTO
