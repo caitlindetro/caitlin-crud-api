@@ -39,10 +39,10 @@ export class TasksController {
     return task;
   }
 
-  // @Get(':listId')
-  // async getTasksByList(@Param('listId') listId: number): Promise<Task[] | string> {
-  //   return await this.tasksService.getTasksByList(listId);
-  // }
+  @Get('filter/:listId')
+  async getTasksByList(@Param('listId') listId: number): Promise<Task[] | string> {
+    return await this.tasksService.getTasksByList(listId);
+  }
 
   @Post()
   async createTask(

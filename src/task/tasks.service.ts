@@ -25,9 +25,10 @@ export class TasksService {
     return await this.tasksRepository.findOneBy({ id });
   }
 
-  // public async getTasksByList(listId: number): Promise<Task[]> {
-  //   return await this.tasksRepository.findBy({ list: listId });
-  // }
+  // Used to filter tasks by associated list ID
+  public async getTasksByList(id: number): Promise<Task[]> {
+    return await this.tasksRepository.findBy({ list: { id } });
+  }
 
   /**
    * Used to create new task. If database error occurs,
