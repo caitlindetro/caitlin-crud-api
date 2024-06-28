@@ -64,6 +64,13 @@ export class TasksController {
     return updatedTask;
   }
 
+  @Patch(':id/complete')
+  async completeTask(@Param('id', ParseIntPipe) id: number): Promise<Task | string> {
+    const completedTask = await this.tasksService.completeTask(id);
+    if (!completedTask) { throw new HttpException('Task not found', HttpStatus.NOT_FOUND) }
+    return completedTask;
+  }
+
   @Delete(':id')
   async deleteTask(@Param('id', ParseIntPipe) id: number): Promise<Boolean> {
     const result = this.tasksService.deleteTask(id);

@@ -59,6 +59,13 @@ export class ListsController {
     return updatedList;
   }
 
+  @Patch(':id/complete')
+  async completeList(@Param('id', ParseIntPipe) id: number): Promise<List | string> {
+    const completedList = await this.listsService.completeList(id);
+    if (!completedList) { throw new HttpException('List not found', HttpStatus.NOT_FOUND) }
+    return completedList;
+  }
+
   @Delete(':id')
   async deleteList(@Param('id', ParseIntPipe) id: number): Promise<Boolean> {
     const result = this.listsService.deleteList(id);

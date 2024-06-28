@@ -65,6 +65,20 @@ export class ListsService {
   }
 
   /**
+   * This function marks the list as completed.
+   * If model not found, null is returned.
+   * @param id 
+   * @returns List | null
+   */
+   public async completeList(id: number): Promise<List | null> {
+    const list = await this.getList(id);
+    if (!list) { return null; }
+    list.isCompleted = true;
+    await this.listsRepository.save(list);
+    return list;
+  }
+
+  /**
    * Deletes given entry. Returns boolean value
    * that indicates if the entry was deleted.
    * @param id 

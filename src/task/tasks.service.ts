@@ -69,6 +69,20 @@ export class TasksService {
   }
 
   /**
+   * This function marks the task as completed.
+   * If model not found, null is returned.
+   * @param id 
+   * @returns Task | null
+   */
+  public async completeTask(id: number): Promise<Task | null> {
+    const task = await this.getTask(id);
+    if (!task) { return null; }
+    task.isCompleted = true;
+    await this.tasksRepository.save(task);
+    return task;
+  }
+
+  /**
    * Deletes given entry. Returns boolean value
    * that indicates if the entry was deleted.
    * @param id 
